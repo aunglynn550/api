@@ -7,9 +7,14 @@ use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Http\Resources\TaskResource;
-
+ 
 class TaskController extends Controller
 {
+
+    public function __construct(){
+        $this->authorizeResource(Task::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -35,6 +40,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
+        
         return TaskResource::make($task);
     }
 
